@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Attri | Enterprise AI, from strategy through delivery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#6647FF; --purple-deep:#5E30F7; --green:#008E4C; --orange:#FF7B35;
+    --red:#DD2A2A; --blue:#2563EB;
+    --ink:#1F2937; --canvas:#030712;
+    --g50:#F9FAFB; --g100:#F3F4F6; --g200:#E5E7EB; --g300:#D1D5DB;
+    --g400:#9CA3AF; --g500:#6B7280; --g600:#4B5563; --g700:#374151; --g900:#111827;
+    --tint-purple:#F1EDFF; --tint-green:#ECFDF5; --tint-orange:#FFF7ED;
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    color:var(--ink); background:#fff; line-height:1.5;
+    -webkit-font-smoothing:antialiased; font-weight:400;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+  .eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--g500);font-weight:400}
+  h1,h2,h3{font-weight:500;color:var(--ink);letter-spacing:-.01em;line-height:1.12}
+  p{color:var(--g600)}
+  .accent-bar{width:220px;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--purple),#C77DFF)}
+
+  /* ---------- NAV ---------- */
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--g200)}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{display:flex;align-items:center;gap:10px}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{font-size:15px;color:var(--g700)}
+  .nav-links a:hover{color:var(--purple)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;font-family:inherit;font-size:15px;font-weight:400;border-radius:10px;padding:11px 20px;cursor:pointer;border:1px solid transparent;transition:.15s}
+  .btn-primary{background:var(--purple);color:#fff}
+  .btn-primary:hover{background:var(--purple-deep)}
+  .btn-ghost-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.32)}
+  .btn-ghost-light:hover{border-color:#fff}
+  .btn-ghost{background:#fff;color:var(--ink);border-color:var(--g300)}
+  .btn-ghost:hover{border-color:var(--purple);color:var(--purple)}
+
+  /* ---------- HERO (dark) ---------- */
+  .hero{position:relative;background:var(--canvas);color:#fff;overflow:hidden;text-align:center}
+  .hero::before{content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(60% 55% at 50% 92%, rgba(102,71,255,.55) 0%, rgba(102,71,255,0) 60%),
+      radial-gradient(40% 40% at 78% 22%, rgba(199,125,255,.18) 0%, rgba(199,125,255,0) 70%);
+    pointer-events:none}
+  .hero-in{position:relative;max-width:920px;margin:0 auto;padding:120px 32px 104px}
+  .hero .eyebrow{color:#A9B0Bf;color:rgba(255,255,255,.6);margin-bottom:24px}
+  .hero h1{color:#fff;font-size:62px;line-height:1.08;letter-spacing:-.02em}
+  .hero h1 .nowrap{white-space:nowrap}
+  .hero p.sub{color:rgba(255,255,255,.74);font-size:21px;line-height:1.5;max-width:720px;margin:28px auto 0}
+  .hero-cta{display:flex;gap:14px;justify-content:center;margin-top:40px}
+  /* stat strip */
+  .stat-strip{position:relative;border-top:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02)}
+  .stat-strip .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .stat{padding:36px 28px;text-align:center;border-right:1px solid rgba(255,255,255,.08)}
+  .stat:last-child{border-right:none}
+  .stat .num{font-size:38px;font-weight:500;color:#fff;line-height:1}
+  .stat .lbl{font-size:14px;color:rgba(255,255,255,.62);margin-top:10px;line-height:1.4}
+  .stat-foot{position:relative;text-align:center;color:rgba(255,255,255,.55);font-size:14px;padding:18px 32px 30px;background:var(--canvas)}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:96px 0}
+  .sec-head{max-width:760px}
+  .sec-head .accent-bar{margin-bottom:28px}
+  .sec-head h2{font-size:42px;line-height:1.14}
+  .sec-head p.lead{font-size:20px;color:var(--g600);margin-top:22px}
+  .kicker{display:block;margin-bottom:18px}
+
+  /* thesis band */
+  .thesis{background:var(--g50);border-top:1px solid var(--g200);border-bottom:1px solid var(--g200)}
+  .thesis .big{font-size:30px;line-height:1.3;font-weight:500;color:var(--ink);max-width:880px}
+  .thesis .big span{color:var(--purple)}
+  .thesis p.note{font-size:18px;color:var(--g600);max-width:760px;margin-top:24px}
+
+  /* ---------- THREE CONSTRAINTS ---------- */
+  .constraints{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+  .ccard{background:#fff;border:1px solid var(--g200);border-radius:20px;padding:32px;display:flex;flex-direction:column}
+  .ccard .badge{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;color:#fff}
+  .b-purple{background:var(--purple)} .b-green{background:var(--green)} .b-orange{background:var(--orange)}
+  .ccard h3{font-size:22px;margin-bottom:6px}
+  .ccard .q{font-size:15px;color:var(--g500);font-style:normal;margin-bottom:18px}
+  .ccard ul{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:6px}
+  .ccard li{display:flex;gap:11px;align-items:flex-start;font-size:15px;color:var(--g600);line-height:1.45}
+  .spark{flex:0 0 auto;margin-top:2px}
+
+  /* ---------- GOVERNANCE PILLARS ---------- */
+  .govern{background:var(--g50);border-top:1px solid var(--g200);border-bottom:1px solid var(--g200)}
+  .gov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+  .gcard{background:#fff;border:1px solid var(--g200);border-radius:18px;padding:28px}
+  .gcard .gic{width:44px;height:44px;border-radius:11px;background:var(--tint-purple);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .gcard h3{font-size:18px;margin-bottom:8px}
+  .gcard p{font-size:14px;color:var(--g500);line-height:1.5}
+
+  /* ---------- DECISION ARCHITECTURE ---------- */
+  .arch{background:var(--canvas);color:#fff}
+  .arch .sec-head h2{color:#fff}
+  .arch .sec-head p.lead{color:rgba(255,255,255,.7)}
+  .arch .kicker{color:rgba(255,255,255,.55)}
+  .spine{margin-top:52px}
+  .domains{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .domain{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:24px;position:relative}
+  .domain .step{font-size:13px;color:var(--purple);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+  .domain h4{font-size:18px;color:#fff;font-weight:500;margin:8px 0 8px}
+  .domain p{font-size:14px;color:rgba(255,255,255,.65);line-height:1.45}
+  .domain .arrow{position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.3);z-index:2}
+  .domains .domain:last-child .arrow{display:none}
+  .foundation{margin-top:16px;background:linear-gradient(90deg,rgba(102,71,255,.22),rgba(102,71,255,.08));border:1px solid rgba(102,71,255,.4);border-radius:16px;padding:22px 28px;display:flex;align-items:center;gap:16px}
+  .foundation .fic{flex:0 0 auto}
+  .foundation .ftxt strong{color:#fff;font-weight:500;font-size:17px;display:block;margin-bottom:4px}
+  .foundation .ftxt span{color:rgba(255,255,255,.66);font-size:14px}
+  .team-line{margin-top:16px;text-align:center;font-size:14px;color:rgba(255,255,255,.55)}
+
+  /* ---------- AI-NATIVE / DIFFERENTIATION ---------- */
+  .diff-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
+  .diff-list{display:flex;flex-direction:column;gap:26px;margin-top:8px}
+  .diff-item{display:flex;gap:16px;align-items:flex-start}
+  .diff-item .ic{flex:0 0 auto;width:40px;height:40px;border-radius:10px;background:var(--tint-purple);display:flex;align-items:center;justify-content:center}
+  .diff-item h4{font-size:17px;font-weight:500;margin-bottom:4px}
+  .diff-item p{font-size:15px;color:var(--g600);line-height:1.45}
+  .qbox{background:var(--g50);border:1px solid var(--g200);border-radius:20px;padding:32px}
+  .qbox .eyebrow{margin-bottom:20px}
+  .qbox ol{list-style:none;counter-reset:q;display:flex;flex-direction:column;gap:18px}
+  .qbox li{counter-increment:q;display:flex;gap:14px;font-size:15px;color:var(--g700);line-height:1.45}
+  .qbox li::before{content:counter(q,decimal-leading-zero);flex:0 0 auto;color:var(--purple);font-weight:500;font-size:14px;font-variant-numeric:tabular-nums;padding-top:1px}
+
+  /* ---------- PROOF ---------- */
+  .proof{background:var(--g50);border-top:1px solid var(--g200);border-bottom:1px solid var(--g200)}
+  .quotes{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+  .quote{background:#fff;border:1px solid var(--g200);border-radius:20px;padding:32px}
+  .quote p{font-size:17px;color:var(--ink);line-height:1.55}
+  .quote .who{margin-top:22px;display:flex;flex-direction:column}
+  .quote .who b{font-weight:500;font-size:15px}
+  .quote .who span{font-size:14px;color:var(--g500)}
+
+  /* ---------- ENTERPRISE ---------- */
+  .ent-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px}
+  .ent{padding:26px;border:1px solid var(--g200);border-radius:16px;background:#fff}
+  .ent .ic{width:40px;height:40px;border-radius:10px;background:var(--tint-purple);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .ent h4{font-size:16px;font-weight:500;margin-bottom:6px}
+  .ent p{font-size:14px;color:var(--g500);line-height:1.45}
+
+  /* ---------- CLOSING CTA (dark) ---------- */
+  .closing{position:relative;background:var(--canvas);color:#fff;text-align:center;overflow:hidden}
+  .closing::before{content:"";position:absolute;inset:0;background:radial-gradient(55% 70% at 50% 100%,rgba(102,71,255,.5),rgba(102,71,255,0) 62%)}
+  .closing .in{position:relative;max-width:760px;margin:0 auto;padding:104px 32px}
+  .closing h2{color:#fff;font-size:46px;line-height:1.12}
+  .closing p{color:rgba(255,255,255,.72);font-size:19px;margin-top:20px}
+  .closing .hero-cta{margin-top:36px}
+  .closing .contact{margin-top:28px;font-size:15px;color:rgba(255,255,255,.55)}
+  .closing .contact a{color:#C77DFF}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:#fff;border-top:1px solid var(--g200);padding:64px 0 40px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+  .foot-brand p{font-size:15px;color:var(--g500);margin-top:18px;max-width:300px;line-height:1.5}
+  .foot-col h5{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--g900);font-weight:500;margin-bottom:16px}
+  .foot-col a{display:block;font-size:15px;color:var(--g500);margin-bottom:11px}
+  .foot-col a:hover{color:var(--purple)}
+  .foot-bottom{max-width:var(--maxw);margin:48px auto 0;padding:24px 32px 0;border-top:1px solid var(--g200);display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--g400)}
+  .foot-bottom .links a{margin-left:20px;color:var(--g400)}
+
+  @media(max-width:900px){
+    .nav-links{display:none}
+    .hero h1{font-size:42px}
+    .hero h1 .nowrap{white-space:normal}
+    .hero p.sub{font-size:18px}
+    .stat-strip .wrap{grid-template-columns:1fr}
+    .stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}
+    .sec-head h2{font-size:32px}
+    .constraints,.domains,.ent-grid,.quotes,.diff-grid,.foot-grid,.gov-grid{grid-template-columns:1fr}
+    .domain .arrow{display:none!important}
+    .foot-bottom{flex-direction:column;gap:14px;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-in">
+    <a class="nav-logo" href="#">
+      <svg width="118" height="41" viewBox="0 0 137 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Attri">
+        <path d="M39.4668 8H10.8285C9.95129 8 9.51199 9.06057 10.1323 9.68084L18.0092 17.5578C18.1938 17.7424 18.4443 17.8462 18.7054 17.8462H29.6206C30.1644 17.8462 30.6053 18.287 30.6053 18.8308V29.746C30.6053 30.0071 30.709 30.2576 30.8937 30.4422L38.7706 38.3192C39.3909 38.9394 40.4514 38.5001 40.4514 37.6229V8.98462C40.4514 8.44083 40.0106 8 39.4668 8Z" fill="#6647FF"/>
+        <path d="M25.6822 31.3846C25.6822 36.1428 21.8249 40 17.0668 40C12.3087 40 8.45142 36.1428 8.45142 31.3846C8.45142 26.6265 12.3087 22.7692 17.0668 22.7692C21.8249 22.7692 25.6822 26.6265 25.6822 31.3846Z" fill="#6647FF"/>
+        <path d="M60.3304 40C55.7967 40 52.4514 37.271 52.4514 33.1774C52.4514 28.5557 56.1488 26.619 60.8146 25.7827L66.5807 24.6823V24.3301C66.5807 22.3494 65.5683 21.1169 63.0154 21.1169C60.7265 21.1169 59.5381 22.1293 59.0099 24.1981L53.1557 23.0977C54.2121 19.1802 57.7334 16.011 63.2355 16.011C69.0897 16.011 72.611 18.696 72.611 24.066V33.5296C72.611 34.762 73.1392 35.1582 74.5037 34.9821V39.6039C70.5862 40.1761 68.2093 39.3838 67.1969 37.447C65.7004 39.0757 63.3675 40 60.3304 40ZM66.5807 31.3728V28.9959L62.047 29.9202C60.0223 30.3164 58.5257 30.9766 58.5257 32.8253C58.5257 34.4099 59.7141 35.3342 61.5628 35.3342C64.1598 35.3342 66.5807 33.9697 66.5807 31.3728Z" fill="#6647FF"/>
+        <path d="M77.6285 33.5736V21.6011H74.5474V16.4512H77.6285V12.5154L83.7028 9.84869V16.4512H88.4126V21.6011H83.7028V32.2971C83.7028 34.2779 84.8032 34.542 86.6079 34.542C87.4882 34.542 87.9284 34.4979 88.7207 34.4099V39.5158C87.6203 39.7359 86.2998 39.8679 84.7592 39.8679C80.0934 39.8679 77.6285 38.3274 77.6285 33.5736Z" fill="#6647FF"/>
+        <path d="M92.1368 33.5736V21.6011H89.0556V16.4512H92.1368V12.5154L98.211 9.84869V16.4512H102.921V21.6011H98.211V32.2971C98.211 34.2779 99.3115 34.542 101.116 34.542C101.996 34.542 102.437 34.4979 103.229 34.4099V39.5158C102.129 39.7359 100.808 39.8679 99.2674 39.8679C94.6017 39.8679 92.1368 38.3274 92.1368 33.5736Z" fill="#6647FF"/>
+        <path d="M119.85 16.4072V22.4374C119.146 22.3494 118.618 22.3054 117.869 22.3054C114.656 22.3054 112.191 24.2861 112.191 27.8514V39.6039H106.029V16.4512H112.191V19.7084C113.203 17.6836 115.492 16.3191 118.353 16.3191C118.97 16.3191 119.41 16.3631 119.85 16.4072Z" fill="#6647FF"/>
+        <path d="M122.254 16.3888V10.6667L128.549 8V13.7221L122.254 16.3888ZM128.505 16.4512V39.6039H122.342V19.1178L128.505 16.4512Z" fill="#6647FF"/>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="#thesis">Why it stalls</a>
+      <a href="#approach">Approach</a>
+      <a href="#govern">Governance</a>
+      <a href="#architecture">Decision architecture</a>
+      <a href="#difference">Why Attri</a>
+      <a href="#proof">Proof</a>
+    </div>
+    <a class="btn btn-primary" href="#contact">Get in touch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-in">
+    <span class="eyebrow">Enterprise AI — strategy through delivery</span>
+    <h1>You've moved past If.<br><span class="nowrap">Now answer Why, What, and How.</span></h1>
+    <p class="sub">Deciding what to build, governing it, and proving it pays off is where AI stalls. Attri owns that whole thread, from boardroom question to running system.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost-light" href="#approach">See the approach</a>
+    </div>
+  </div>
+  <div class="stat-strip">
+    <div class="wrap">
+      <div class="stat"><div class="num">88%</div><div class="lbl">of agentic AI pilots never reach production</div></div>
+      <div class="stat"><div class="num">95%</div><div class="lbl">of GenAI pilots show no measurable P&amp;L impact</div></div>
+      <div class="stat"><div class="num">3&times;</div><div class="lbl">how far most enterprises underestimate first-year AI spend</div></div>
+    </div>
+  </div>
+  <div class="stat-foot">The bottleneck has moved from engineering to judgment.</div>
+</header>
+
+<!-- THESIS -->
+<section class="thesis" id="thesis">
+  <div class="wrap">
+    <span class="eyebrow kicker">The shift</span>
+    <p class="big">The cost of building AI has collapsed. The hard part moved to the two ends most teams aren't ready for: <span>deciding what's worth building</span>, and <span>governing it at scale</span>.</p>
+    <p class="note">Pilots don't fail because the model can't code. They fail with no measured outcome, no proof of spend, and no owner after launch. Attri is built around all three.</p>
+  </div>
+</section>
+
+<!-- THREE CONSTRAINTS -->
+<section id="approach">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="accent-bar"></div>
+      <span class="eyebrow kicker">What we solve</span>
+      <h2>The three problems that decide whether AI delivers</h2>
+      <p class="lead">You know AI can move big numbers. The hard part is everything between the idea and a system you can trust, afford, and keep running.</p>
+    </div>
+
+    <div class="constraints">
+      <!-- 1 -->
+      <div class="ccard">
+        <div class="badge b-purple">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+        </div>
+        <h3>Proving value and aligning to strategy</h3>
+        <p class="q">Is it worth building, and how will we know?</p>
+        <ul>
+          <li><span class="spark">&#10037;</span>AI as leverage on your 1&ndash;3 year mandates, not a side program.</li>
+          <li><span class="spark">&#10037;</span>Every initiative tied to a measured outcome, with a baseline captured first.</li>
+          <li><span class="spark">&#10037;</span>We reconcile the executive view of value with how the work actually runs.</li>
+        </ul>
+      </div>
+      <!-- 2 -->
+      <div class="ccard">
+        <div class="badge b-green">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Governance, budget, and security</h3>
+        <p class="q">Can you trust it, control the spend, and prove it?</p>
+        <ul>
+          <li><span class="spark">&#10037;</span>Every agent action scoped, screened, approved, and audited through Open Watch.</li>
+          <li><span class="spark">&#10037;</span>Cost tagged, capped, and cached &mdash; typically 60&ndash;80% out of an unoptimized deployment.</li>
+          <li><span class="spark">&#10037;</span>Least-privilege access, PII redaction, SOC 2 and HIPAA. You own the audit store.</li>
+        </ul>
+      </div>
+      <!-- 3 -->
+      <div class="ccard">
+        <div class="badge b-orange">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
+        </div>
+        <h3>Maintenance and improvement</h3>
+        <p class="q">What happens after go-live?</p>
+        <ul>
+          <li><span class="spark">&#10037;</span>Managed services with defined SLAs, so issues are fixed against a clock.</li>
+          <li><span class="spark">&#10037;</span>Continuous evaluation catches quality and cost drift before users do.</li>
+          <li><span class="spark">&#10037;</span>Support becomes the channel that surfaces the next workflow worth building.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOVERNANCE PILLARS -->
+<section class="govern" id="govern">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="accent-bar"></div>
+      <span class="eyebrow kicker">The governance backbone</span>
+      <h2>AI you can govern, AI you can prove.</h2>
+      <p class="lead">Every agent action runs the same control loop &mdash; scoped, screened, approved, audited &mdash; so one pilot scales into an enterprise without uncontrolled risk.</p>
+    </div>
+
+    <div class="gov-grid">
+      <div class="gcard">
+        <div class="gic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6647FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M16.5 11l2 2 4-4"/></svg></div>
+        <h3>Identity &amp; Access</h3>
+        <p>Trusted identities, least-privilege permissions, human oversight for sensitive actions, and enterprise configuration aligned to industry requirements.</p>
+      </div>
+      <div class="gcard">
+        <div class="gic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6647FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+        <h3>Data Lifecycle</h3>
+        <p>Data is handled safely and securely through classification, protection, retention, and residency controls aligned to regulated industry requirements.</p>
+      </div>
+      <div class="gcard">
+        <div class="gic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6647FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M8.5 13l2 2 4-4"/></svg></div>
+        <h3>Evidentiary Record</h3>
+        <p>Every AI decision is traceable and audit-ready through complete records of inputs, policies, outputs, approvals, and Enterprise AI activity.</p>
+      </div>
+      <div class="gcard">
+        <div class="gic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6647FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z"/></svg></div>
+        <h3>Pre-Prompt Governance</h3>
+        <p>Policies are enforced upfront &mdash; PII masking, redaction, and access checks &mdash; so unsafe data is never sent to AI.</p>
+      </div>
+      <div class="gcard">
+        <div class="gic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6647FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+        <h3>Intelligence &amp; Assurance</h3>
+        <p>Always-on intelligence using monitoring, audit logs, and autonomous agents to detect policy violations, anomalies, and model drift.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DECISION ARCHITECTURE -->
+<section class="arch" id="architecture">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="accent-bar"></div>
+      <span class="eyebrow kicker">How we think</span>
+      <h2>An enterprise AI engagement is an architecture of decisions</h2>
+      <p class="lead">Four decision domains in sequence, on a foundation of governance and security, carried by one team.</p>
+    </div>
+
+    <div class="spine">
+      <div class="domains">
+        <div class="domain">
+          <div class="step">Why</div>
+          <h4>Strategic frame</h4>
+          <p>Where AI is genuine leverage on your next one to three years.</p>
+          <svg class="arrow" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </div>
+        <div class="domain">
+          <div class="step">What</div>
+          <h4>Discovery &amp; definition</h4>
+          <p>Where value lives, true cost and return, and what's worth building.</p>
+          <svg class="arrow" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </div>
+        <div class="domain">
+          <div class="step">How</div>
+          <h4>Delivery method</h4>
+          <p>An agent-driven build that carries intent on one context spine.</p>
+          <svg class="arrow" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </div>
+        <div class="domain">
+          <div class="step">Sustain</div>
+          <h4>Sustain &amp; expand</h4>
+          <p>Managed services and a loop that finds the next workflow.</p>
+        </div>
+      </div>
+
+      <div class="foundation">
+        <div class="fic">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C77DFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/></svg>
+        </div>
+        <div class="ftxt">
+          <strong>Governance &amp; security &mdash; the foundation, not a later phase</strong>
+          <span>Built first, because every other decision depends on it.</span>
+        </div>
+      </div>
+      <div class="team-line">One small, senior team carries it end to end. Strategy and delivery stay under one roof.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATION -->
+<section id="difference">
+  <div class="wrap">
+    <div class="diff-grid">
+      <div>
+        <div class="accent-bar" style="margin-bottom:28px"></div>
+        <span class="eyebrow kicker">Why Attri</span>
+        <h2 style="font-size:38px;line-height:1.15">AI-native is a way of working, not a label</h2>
+        <p class="lead" style="font-size:19px;margin-top:20px">Remove the AI from most vendors and a feature dips. Remove it from how we build and the model breaks.</p>
+        <div class="diff-list">
+          <div class="diff-item">
+            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6647FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+            <div><h4>Discovery is the visible product</h4><p>You see coverage and approve the plan before anything gets built.</p></div>
+          </div>
+          <div class="diff-item">
+            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6647FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
+            <div><h4>Defined prompt structures, not freelance prompting</h4><p>Reproducible outcomes that don't depend on who writes the prompt.</p></div>
+          </div>
+          <div class="diff-item">
+            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6647FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg></div>
+            <div><h4>One thread, boardroom to running agent</h4><p>Strategy, workflow, and system all say the same thing, and stay correctable.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qbox">
+        <span class="eyebrow">The questions a serious buyer asks</span>
+        <ol>
+          <li>If we removed the AI tomorrow, what breaks &mdash; a feature, a workflow, or the business model?</li>
+          <li>Walk me through one production trace, end to end.</li>
+          <li>What's your model pinning, incident SLA, and data portability on exit?</li>
+          <li>When something breaks in production, how do you detect and recover?</li>
+          <li>How is every dollar of spend attributed and capped?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof" id="proof">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="accent-bar"></div>
+      <span class="eyebrow kicker">In their words</span>
+      <h2>Built with trust at every step</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote">
+        <p>"What I appreciate about Attri is how effortless it makes working with AI. Security and compliance were built into every step. It bridges the gap between innovation and trust, which is essential in an enterprise environment."</p>
+        <div class="who"><b>Ajay Mago</b><span>Managing Partner</span></div>
+      </div>
+      <div class="quote">
+        <p>"Attri helped us develop a new data visualization product, brought the expertise we needed, and delivered high-quality results at a competitive rate &mdash; while showing us how to use AI to improve operational efficiency."</p>
+        <div class="who"><b>Greg Jimenez</b><span>Executive Director &mdash; Finance, Administration &amp; Planning</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTERPRISE -->
+<section id="enterprise">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="accent-bar"></div>
+      <span class="eyebrow kicker">Built for the enterprise</span>
+      <h2>Own the code. Own the infrastructure. Own the audit.</h2>
+      <p class="lead">Self-hosted, full code and IP ownership, and an audit store that stays in your network.</p>
+    </div>
+    <div class="ent-grid">
+      <div class="ent">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6647FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
+        <h4>Self-hosted</h4><p>Your cloud or on-premises.</p>
+      </div>
+      <div class="ent">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6647FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+        <h4>Full ownership</h4><p>100% of the code and IP. No lock-in.</p>
+      </div>
+      <div class="ent">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6647FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h4>SOC 2 ready</h4><p>Compliance built into the architecture.</p>
+      </div>
+      <div class="ent">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6647FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M12 8v4M12 15h.01"/></svg></div>
+        <h4>HIPAA ready</h4><p>Healthcare-grade data protection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="closing" id="contact">
+  <div class="in">
+    <h2>You have good engineers. We bring the map.</h2>
+    <p>Asked to take cost out, move faster, or prove AI is worth the spend? The answer isn't a better demo. It's a partner who has mapped the whole journey.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="mailto:dev@attri.ai">Get in touch</a>
+      <a class="btn btn-ghost-light" href="#approach">See the approach</a>
+    </div>
+    <div class="contact">attri.ai &nbsp;|&nbsp; <a href="mailto:dev@attri.ai">dev@attri.ai</a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <svg width="118" height="41" viewBox="0 0 137 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Attri">
+          <path d="M39.4668 8H10.8285C9.95129 8 9.51199 9.06057 10.1323 9.68084L18.0092 17.5578C18.1938 17.7424 18.4443 17.8462 18.7054 17.8462H29.6206C30.1644 17.8462 30.6053 18.287 30.6053 18.8308V29.746C30.6053 30.0071 30.709 30.2576 30.8937 30.4422L38.7706 38.3192C39.3909 38.9394 40.4514 38.5001 40.4514 37.6229V8.98462C40.4514 8.44083 40.0106 8 39.4668 8Z" fill="#6647FF"/>
+          <path d="M25.6822 31.3846C25.6822 36.1428 21.8249 40 17.0668 40C12.3087 40 8.45142 36.1428 8.45142 31.3846C8.45142 26.6265 12.3087 22.7692 17.0668 22.7692C21.8249 22.7692 25.6822 26.6265 25.6822 31.3846Z" fill="#6647FF"/>
+          <path d="M60.3304 40C55.7967 40 52.4514 37.271 52.4514 33.1774C52.4514 28.5557 56.1488 26.619 60.8146 25.7827L66.5807 24.6823V24.3301C66.5807 22.3494 65.5683 21.1169 63.0154 21.1169C60.7265 21.1169 59.5381 22.1293 59.0099 24.1981L53.1557 23.0977C54.2121 19.1802 57.7334 16.011 63.2355 16.011C69.0897 16.011 72.611 18.696 72.611 24.066V33.5296C72.611 34.762 73.1392 35.1582 74.5037 34.9821V39.6039C70.5862 40.1761 68.2093 39.3838 67.1969 37.447C65.7004 39.0757 63.3675 40 60.3304 40ZM66.5807 31.3728V28.9959L62.047 29.9202C60.0223 30.3164 58.5257 30.9766 58.5257 32.8253C58.5257 34.4099 59.7141 35.3342 61.5628 35.3342C64.1598 35.3342 66.5807 33.9697 66.5807 31.3728Z" fill="#6647FF"/>
+          <path d="M77.6285 33.5736V21.6011H74.5474V16.4512H77.6285V12.5154L83.7028 9.84869V16.4512H88.4126V21.6011H83.7028V32.2971C83.7028 34.2779 84.8032 34.542 86.6079 34.542C87.4882 34.542 87.9284 34.4979 88.7207 34.4099V39.5158C87.6203 39.7359 86.2998 39.8679 84.7592 39.8679C80.0934 39.8679 77.6285 38.3274 77.6285 33.5736Z" fill="#6647FF"/>
+          <path d="M92.1368 33.5736V21.6011H89.0556V16.4512H92.1368V12.5154L98.211 9.84869V16.4512H102.921V21.6011H98.211V32.2971C98.211 34.2779 99.3115 34.542 101.116 34.542C101.996 34.542 102.437 34.4979 103.229 34.4099V39.5158C102.129 39.7359 100.808 39.8679 99.2674 39.8679C94.6017 39.8679 92.1368 38.3274 92.1368 33.5736Z" fill="#6647FF"/>
+          <path d="M119.85 16.4072V22.4374C119.146 22.3494 118.618 22.3054 117.869 22.3054C114.656 22.3054 112.191 24.2861 112.191 27.8514V39.6039H106.029V16.4512H112.191V19.7084C113.203 17.6836 115.492 16.3191 118.353 16.3191C118.97 16.3191 119.41 16.3631 119.85 16.4072Z" fill="#6647FF"/>
+          <path d="M122.254 16.3888V10.6667L128.549 8V13.7221L122.254 16.3888ZM128.505 16.4512V39.6039H122.342V19.1178L128.505 16.4512Z" fill="#6647FF"/>
+        </svg>
+        <p>Enterprise AI, decided well and delivered with control.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Solutions</h5>
+        <a href="#">Legal</a><a href="#">Private Equity</a><a href="#">Supply Chain &amp; Operations</a>
+        <a href="#">Healthcare</a><a href="#">Finance &amp; Accounting</a><a href="#">Insurance</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="#approach">Approach</a><a href="#architecture">Decision architecture</a>
+        <a href="#difference">Why Attri</a><a href="#">Anthropic expertise</a><a href="#contact">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h5>Resources</h5>
+        <a href="#">Blog</a><a href="#">Insights</a><a href="#">Case studies</a><a href="#">Newsletter</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Attri AI Inc. All rights reserved.</span>
+      <span class="links"><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
